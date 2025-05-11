@@ -10,7 +10,7 @@
 
       <div class="input-group mb-2">
         <div class="input-group-text">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="fill: currentColor;"
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="icon"
             viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
             <path
               d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
@@ -39,10 +39,10 @@
     <!-- Lista zadań -->
     <div class="col-12 col-md-8 order-2 order-md-0 mb-3 mb-md-0">
       <ul class="list-unstyled">
-        <li class="border rounded my-2 p-2 transition-hover hover-shadow">
+        <li class="border rounded my-2 p-2 hover-shadow">
           <div class="d-flex" (click)="showModal = true">
             <div class="flex-shrink-0 ms-1" title="Add new task">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="fill: currentColor;" class="text-muted"
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="text-muted icon"
                 viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                 <path
                   d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
@@ -56,25 +56,25 @@
         </li>
         @if (filteredTasks.length > 0) {
           @for (task of filteredTasks; track $index) {
-          <li class="border rounded my-2 p-2 transition-hover hover-shadow">
+          <li class="border rounded my-2 p-2 hover-shadow">
             <div class="d-flex" (click)="toggleTaskStatus(task)">
               <div class="flex-shrink-0 ms-1" [title]="task.status">
                 @switch (task.status) {
                 @case ('Planned') {
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="fill: currentColor;" class="text-muted"
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="text-muted icon"
                   viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                   <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z" />
                 </svg>
                 }
                 @case ('Pending') {
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="fill: currentColor;" class="text-warning"
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="text-warning icon"
                   viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                   <path
                     d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
                 </svg>
                 }
                 @case ('Completed') {
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="fill: currentColor;" class="text-success"
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="text-success icon"
                   viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                   <path
                     d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z" />
@@ -89,7 +89,7 @@
                 <div class="d-flex align-items-center">
                   <!-- <span class="badge bg-secondary me-2" [ngClass]="{'bg-success': task.status === 'Completed', 'bg-warning': task.status === 'Pending'}">{{ task.status }}</span> -->
                   <span class="" [ngClass]="getDeadlineClass(task.date)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="fill: currentColor;" class="me-1"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" class="me-1 icon"
                       viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                       <path
                         d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z" />
@@ -105,7 +105,7 @@
                       @else {
                       Pokaż opis
                       }
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="fill: currentColor;" class="text-muted ms-1"
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" class="text-muted ms-1 icon"
                         [style.transform]="descVisible[task.id] ? 'rotate(180deg)' : 'rotate(0deg)'"
                         viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                         <path
