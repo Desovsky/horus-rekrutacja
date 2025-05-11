@@ -88,7 +88,7 @@
                 </div>
                 <div class="d-flex align-items-center">
                   <!-- <span class="badge bg-secondary me-2" [ngClass]="{'bg-success': task.status === 'Completed', 'bg-warning': task.status === 'Pending'}">{{ task.status }}</span> -->
-                  <span class="d-flex align-items-center" [ngClass]="getDeadlineClass(task.date)">
+                  <span class="d-flex align-items-center" [ngClass]="getDeadlineClass(task.date)" [title]="task.date">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" class="me-1 icon"
                       viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                       <path
