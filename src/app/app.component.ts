@@ -128,4 +128,6 @@ export class AppComponent {
   get canSubmitTask(): boolean {
     return this.newTask.name.trim() !== '' && this.newTask?.date > this.today;
   }
+
+  showMessage = false;
 }

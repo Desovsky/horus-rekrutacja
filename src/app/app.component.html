@@ -88,7 +88,7 @@
                 </div>
                 <div class="d-flex align-items-center">
                   <!-- <span class="badge bg-secondary me-2" [ngClass]="{'bg-success': task.status === 'Completed', 'bg-warning': task.status === 'Pending'}">{{ task.status }}</span> -->
-                  <span class="" [ngClass]="getDeadlineClass(task.date)">
+                  <span class="d-flex align-items-center" [ngClass]="getDeadlineClass(task.date)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" class="me-1 icon"
                       viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                       <path
@@ -179,3 +179,32 @@
   </div>
   
 }
+
+
+
+<div class="position-absolute bottom-0 start-50 w-100 translate-middle-x d-flex justify-content-center flex-column bg-white rounded p-4">
+  @if (showMessage) {
+  <p class="shadow p-4">
+    Cześć! Jeśli to czytasz - dziękuję za poświęcenie czasu.
+    <br />
+    To zadanie wykonałem jako "świeżak" w świecie Angulara i Bootstrapa, ale dałem z siebie wszystko, aby końcowy
+    efekt był czytelny, kompletny i zgodny z wymaganiami.
+    <br />
+    Wiem, że warto byłoby dodać np. animacje, własne dropdowny czy
+    podzielić kod na komponenty. Niestety sporo czasu poszło ma szukanie odpowiedzi na pytanie "jak mogę osiągnąć to, co mam
+    w głowie?".
+    <br />
+    W trakcie pracy korzystałem z dokumentacji i różnych
+    narzędzi jak ChatGPT - oczywiście tylko w zakresie, który pomagał mi zrozumieć nowe koncepcje. Od
+    razu zaznaczam - <b>nie kopiowałem gotowych rozwiązań</b>. Nigdy nie widzę sensu w pisaniu czegoś, czego nie
+    rozumiem.
+    <br />
+    Mam świadomość, że dopiero się uczę - ale uczę się szybko i zależy mi, by dorównać poziomem Waszym oczekiwaniom.
+    <br />
+    <b>Dziękuję za rozważenie mojej kandydatury</b> i z niecierpliwością czekam na odpowiedź!
+    <br />
+    Pozdrawiam, Damian Sobański.
+  </p>
+  }
+  <button class="btn btn-link" (click)="showMessage = !showMessage">Od kandydata</button>
+</div>
