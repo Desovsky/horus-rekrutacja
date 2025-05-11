@@ -13,9 +13,10 @@ export class AppComponent {
   title = 'junior-frontend-developer-task';
 
   protected tasks = [
-    { id: 1, name: 'Zrobić zakupy spożywcze', status: 'Completed', date: '2025-05-01', description: 'Muszę kupić mleko, mąkę i jajka.' },
-    { id: 2, name: 'Opłacić rachunki', status: 'Pending', date: '2025-05-10', description: 'Tylko nie odkładaj tego na inny dzień!' },
-    { id: 3, name: 'Urodziny mamy', status: 'Planned', date: '2025-05-15', description: 'Kupić kwiaty i tort.' }
+    { id: 0, name: 'Zrobić zakupy spożywcze', status: 'Completed', date: '2025-05-01', description: 'Muszę kupić mleko, mąkę i jajka.' },
+    { id: 1, name: 'Opłacić rachunki', status: 'Pending', date: '2025-05-10', description: 'Tylko nie odkładaj tego na inny dzień!' },
+    { id: 2, name: 'Urodziny mamy', status: 'Planned', date: '2025-05-15', description: 'Kupić kwiaty i tort.' },
+    { id: 3, name: 'Przyjąć kandydata', status: 'Pending', date: '2025-05-25', description: 'Może nie jest idealnie, ale widać, że się starał. ;)' },
   ];
   protected descVisible: Record<number, boolean> = {};
 
@@ -102,7 +103,29 @@ export class AppComponent {
   }
 
   showModal = false;
+  today = new Date().toISOString().split("T")[0];
+  protected newTask = {
+    name: '',
+    date: this.today,
+    description: ''
+  }
   addNewTask() {
-    console.log('add');
+    if (this.newTask.name.trim() !== '' && this.newTask.date > this.today) {
+      this.tasks.push(
+        {id: this.tasks.length + 1, name: this.newTask.name.trim(), status: 'Planned', date: this.newTask.date, description: this.newTask.description.trim()}
+      )
+      this.showModal = false;
+      this.newTask = {
+        name: '',
+        date: this.today,
+        description: ''
+      }
+    }
+    else {
+      alert('Podano błędne dane. Sprawdź ich poprawność i spróbuj ponownie.');
+    }
+  }
+  get canSubmitTask(): boolean {
+    return this.newTask.name.trim() !== '' && this.newTask?.date > this.today;
   }
 }

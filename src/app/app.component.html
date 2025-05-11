@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-2 border-bottom">
+  <div class="d-flex justify-content-between align-items-center pt-3 pb-1 mb-3 border-bottom">
     <h1 class="fw-bold fs-2">Lista zadań</h1>
   </div>
 
@@ -96,21 +96,23 @@
                     </svg>
                     {{ getDeadlineLabel(task.date) }}
                   </span>
-                  <button class='btn btn-outline-secondary btn-sm ms-auto border-0'
-                    (click)="toggleDescription(task.id);$event.stopPropagation()">
-                    @if (descVisible[task.id]) {
-                    Ukryj opis
-                    }
-                    @else {
-                    Pokaż opis
-                    }
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="fill: currentColor;"
-                      class="text-muted ms-1" [style.transform]="descVisible[task.id] ? 'rotate(180deg)' : 'rotate(0deg)'"
-                      viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                      <path
-                        d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-                    </svg>
-                  </button>
+                  @if (task.description) {
+                    <button class='btn btn-outline-secondary btn-sm ms-auto border-0'
+                      (click)="toggleDescription(task.id);$event.stopPropagation()">
+                      @if (descVisible[task.id]) {
+                      Ukryj opis
+                      }
+                      @else {
+                      Pokaż opis
+                      }
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="fill: currentColor;" class="text-muted ms-1"
+                        [style.transform]="descVisible[task.id] ? 'rotate(180deg)' : 'rotate(0deg)'"
+                        viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path
+                          d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                      </svg>
+                    </button>
+                  }
           
                 </div>
                 @if (descVisible[task.id]) {
@@ -139,38 +141,41 @@
 </div>
 
 @if (showModal) {
-  <div class="position-absolute top-50 start-50 w-100 h-100 translate-middle bg-secondary d-flex align-items-center justify-content-center" style="--bs-bg-opacity: .5;">
-    <div class="bg-white p-4 rounded">
-      <div class="pb-1 mb-1 border-bottom border-secondary">
-        <h1 class="fw-bold fs-3">Add new task</h1>
+  <div class="position-absolute top-50 start-50 w-100 h-100 translate-middle bg-secondary d-flex align-items-center justify-content-center" style="--bs-bg-opacity: .5;" (click)="showModal=false">
+    <div class="bg-white p-4 rounded w-75 w-lg-50" (click)="$event.stopPropagation()">
+      <div class="pb-1 mb-3 border-bottom">
+        <h1 class="fw-bold fs-3">Dodaj nowe zadanie</h1>
       </div>
 
-      <div>
-        <div class="flex-grow-1">
-          <div>
-            <input type="text" placeholder="Nazwa zadania..."/>
-          </div>
-          <div class="d-flex align-items-center">
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="fill: currentColor;" class="me-1"
-                viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                <path
-                  d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l352 0 0 256c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256z" />
-              </svg>
-              <p>Date</p>
-            </div>
-          </div>
-          <div class="text-muted mb-0">
-            opsi
-          </div>
+      <div class="flex-grow-1">
+        <div class="mb-2">
+          <label for="newTitle" class="form-label mb-1">Nazwa zadania</label>
+          <input type="text" id="newTitle" placeholder="Podaj nazwę..." class="form-control"
+            [(ngModel)]="newTask.name" required />
+          @if (newTask.name.trim() === '') { 
+            <span class="small text-danger">Nazwa nie może być pusta.</span> 
+          }
+        </div>
+        <div class="mb-2">
+          <label for="newDueDate" class="form-label mb-1">Data ukończenia</label>
+          <input type="date" id="newDueDate" class="form-control" [(ngModel)]="newTask.date" />
+          @if (newTask.date <= today ) {
+            <span class="small text-danger">Data ukończenia nie może być w przeszłości.</span>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="newDesc" class="form-label mb-1">Opis (opcjonalnie)</label>
+          <textarea type="text" id="newDesc"
+            placeholder="Dodatkowe szczegóły zadania..."
+            class="form-control" [(ngModel)]="newTask.description"></textarea>
         </div>
       </div>
 
-      <div>
-        <button (click)="showModal = false">Anuluj</button>
-        <button>Dodaj</button>
+      <div class="d-flex justify-content-end">
+        <button (click)="showModal = false" class="btn btn-outline-secondary me-2">Anuluj</button>
+        <button (click)="addNewTask()" class="btn btn-primary" [disabled]="!canSubmitTask">Dodaj</button>
       </div>
-      </div>
+    </div>
   </div>
   
 }
