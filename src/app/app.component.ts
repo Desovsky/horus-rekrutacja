@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [NgClass],
+  imports: [NgClass, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true
@@ -84,5 +85,24 @@ export class AppComponent {
     } else {
       return 'text-muted';
     }
+  }
+
+  protected filters = { 
+    name: '', 
+    date: null, 
+    status: '' 
+  }
+
+  get filteredTasks() {
+    return this.tasks.filter(task => 
+    (!this.filters.name || task.name.toLowerCase().includes(this.filters.name.toLowerCase())) &&
+    (!this.filters.date || new Date(task.date).toDateString() === new Date(this.filters.date).toDateString()) &&
+    (!this.filters.status || task.status === this.filters.status)
+    );
+  }
+
+  showModal = false;
+  addNewTask() {
+    console.log('add');
   }
 }
