@@ -1,42 +1,18 @@
-# Opis zadania
+# Lista zadań - zadanie rekrutacyjne
 
-Masz przed sobą działającą, lecz celowo nieestetyczną aplikację do zarządzania listą wydarzeń (todos). Twoim zadaniem jest poprawa wyglądu i funkcjonalności aplikacji przy użyciu Angular, Bootstrap 5 i SCSS.
-## Zakres prac
+To repozytorium zawiera moje rozwiązanie zadania rekrutacyjnego w Angularze. Celem zadania było usprawnienie istniejącej aplikacji do zarządzania zadaniami oraz rozbudowa jej o nowe funkcje.
 
-1. Refaktoryzacja UI
-   * popraw wygląd listy zadań,
-   * zadbaj o estetykę, czytelność, spójność stylów oraz responsywność,
-   * usuń niepotrzebne lub błędne style, popraw klasy Bootstrap,
-   * popracuj nad rozwijaniem opisu
-   
-2. Dodaj filtry, które dynamicznie przefiltrują listę wydarzeń. Filtruj według:
-   * nazwy wydarzenia,
-   * daty,
-   * statusu.
-   
-3. Dodaj formularz dodawania nowego zadania (modal)
-   * zadbaj o jego wygląd,
-   * dodaj walidację formularza (nazwa i data wymagane, data nie może być przeszła),
-   * po zapisaniu formularza zadanie powinno pojawić się na liście.
-4. (Opcjonalnie) Jeśli masz czas, to podziel aplikację na mniejsze komponenty
+## Zakres zadania
 
+Zadanie było podzielone na następujące etapy:
+- poprawienie wyglądu aplikacji, uporządkowanie klas Bootstrap oraz poprawienie logiki rozwijania opisu,
+- dodanie filtrów (nazwa, data, status),
+- dodanie opcji tworzenia nowych zadań,
+- podzielenie aplikacji na komponenty (opcjonalnie).
 
-## Jak uruchomić
+## Uruchomienie projektu
 
 ```bash
 npm install
-```
-
-```bash
 npm run start
 ```
-
-Projekt został stworzony za pomocą narzędzi z następującymi wersjami:
-
-> node v22.14.0
-
-> Angular CLI 19.2.0
-
-## Dostarczenie rozwiązania
-
-Spakuj projekt jako .zip lub prześlij link do repozytorium na GitHubie.
